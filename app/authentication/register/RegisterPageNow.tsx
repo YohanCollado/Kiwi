@@ -3,9 +3,12 @@
 "use client";
 
 import {useState} from "react";
+import TopBar from "../../components/TopBar_now"
+import InputField from "@/app/components/ui/InputField";
+
 
 export default function RegisterPage() {
-    const [name, setName] = useState<string>("");
+    const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -15,7 +18,7 @@ export default function RegisterPage() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!name || !lastName || !email || !password || !confirmPassword || !error ) {
+        if (!firstName || !lastName || !email || !password || !confirmPassword || !error ) {
             setError("All fields must be filled");
             return
         }
@@ -40,16 +43,26 @@ export default function RegisterPage() {
             return
         }
 
-        
-
         setError(null);
     }
 
     return (
-        <div>
+        <div className="min-h-screen bg-[#000000] relative">
+            <TopBar/>
+            <h1 className="flex justify-center pt-40 text-6xl text-white text-center">Register Now</h1>
 
-            <h1>Test for Page</h1>
-
+            <form className="flex flex-col items-center gap-2 mt-16">
+                <label className="text-white text-3xl">First Name</label>
+                <InputField
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) =>setFirstName(e.target.value)}
+                    className="w-100 mx-auto"
+                    required
+                    ></InputField>
+                </form>
+                
+            
         </div>
     );
 }
