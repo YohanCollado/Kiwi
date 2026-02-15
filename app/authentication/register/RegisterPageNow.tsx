@@ -47,22 +47,77 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#000000] relative">
+        <div className="min-h-screen bg-[#000000] relative flex flex-col items-center">
             <TopBar/>
-            <h1 className="flex justify-center pt-40 text-6xl text-white text-center">Register Now</h1>
+            <h1 className="flex justify-center pt-20 text-6xl text-white text-center">Register Now</h1>
 
-            <form className="flex flex-col items-center gap-2 mt-16">
+            <form className="flex flex-col items-center gap-1 mt-10">
                 <label className="text-white text-3xl">First Name</label>
                 <InputField
+                    type="firstName"
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) =>setFirstName(e.target.value)}
                     className="w-100 mx-auto"
                     required
                     ></InputField>
-                </form>
-                
-            
+            </form>
+
+            <form className="flex flex-col items-center gap-1 mt-10">
+                <label className="text-white text-3xl">Last Name</label>
+                <InputField
+                    type="lastName"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-100 mx-auto"
+                    required
+                    ></InputField>
+            </form>
+
+            <form className="flex flex-col items-center gap-1 mt-10">
+                <label className="text-white text-3xl">Email</label>
+                <InputField
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-100 mx-auto"
+                    required
+                    ></InputField>
+            </form>
+
+            <form className="flex flex-col items-center gap-1 mt-10">
+                <label className="text-white text-3xl">Password</label>
+                <InputField
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-100 mx-auto"
+                required
+                ></InputField>
+            </form>
+
+            <form className="flex flex-col items-center gap-1 mt-10">
+                <label className="text-white text-3xl">Confirm Password</label>
+                <InputField
+                type="password"
+                placeholder="ConfirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-100 mx-auto"
+                required></InputField>
+            </form>
+
+            <button className ={`
+                mt-6 px-2 py-2 rounded-md bg-brand
+                text-white border-2 border-green-500
+                hover:border-green-500 active:scale-95 
+                transition-all duration-150 active:bg-green-600
+                `}>
+                Join Now
+            </button>
         </div>
     );
 }
