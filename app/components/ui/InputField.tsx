@@ -7,6 +7,7 @@ type InputFieldProps ={
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
     className?: string;
+    error?: string;
 };
 
 export default function InputField({
@@ -16,6 +17,7 @@ export default function InputField({
     onChange,
     required = false,
     className = "",
+    error="",
 }: InputFieldProps) {
     return (
         <input
