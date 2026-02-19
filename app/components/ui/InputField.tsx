@@ -19,19 +19,34 @@ export default function InputField({
     className = "",
     error="",
 }: InputFieldProps) {
+    
+    const hasError = Boolean(error);
     return (
-        <input
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            required={required}
-            className={`
-            px-4 py-3 rounded-md border border-green-600
-            focus: outline-none focus:ring-2 focus:ring-green-600
-            text-white placeholder-grey-300
-                ${className}"
-            `}
-        />
+        <div className="flex flex-col w-full">
+            <input
+                type={type}
+                placeholder={hasError ? error: placeholder}
+                value={value}
+                onChange={onChange}
+                required={required}
+                className={`
+                    px-4 py-3 rounded-md border
+                    text-white
+                    focus:outline-none focus:ring-2 transition-all duration-200
+                    ${
+                        hasError
+                        ? "border-red-500 focus:ring-red-500 placeholder-red-400"
+                        : "border-green-600 focus:ring-green-600 placeholder-gray-300"
+                    }
+                    ${className}
+                `}
+            />
+
+            {hasError && (
+                <span className="text-red-500 text-sm mt-1">
+                    {error}
+                </span>
+            )}
+        </div>
     );
 }

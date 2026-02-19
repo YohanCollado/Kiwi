@@ -5,6 +5,7 @@
 import {useState} from "react";
 import TopBar from "../../components/TopBar_now"
 import InputField from "@/app/components/ui/InputField";
+import { RegisterErrors } from "@/app/types/register";
 
 
 export default function RegisterPage() {
@@ -13,17 +14,59 @@ export default function RegisterPage() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
-    const [error, setError] = useState({
-        firstName: "",
-        lastName: "", 
-        email: "",
-        password: "",
-        confirmPassword: "",
+    const [error, setError] = useState<RegisterErrors>({
+        firstName:"",
+        lastName:"",
+        email:"",
+        password:"",
+        confirmPassword:"",
     });
+    
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        const newError: RegisterErrors = {
+            firstName:"",
+            lastName:"",
+            email:"",
+            password:"",
+            confirmPassword:"",
+        };
+
+        if(!firstName.trim()) {
+            newError.firstName="First name is required";
+        }
+        if(!lastName.trim()) {
+            newError.lastName="Last name is required";
+        }
+        if(!email.trim()) {
+            newError.email="Email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(email)){
+            newError.email="Invalid email. Try Again";
+        }
+        if(!password){
+            newError.password="Password is required";
+        } else if (password.length < 8){
+            newError.password="Password must be at least 8 characters";
+        }
+        if(!confirmPassword){
+            newError.confirmPassword="Must confirm the password";
+        } else if(password != confirmPassword){
+            newError.confirmPassword="Passwords do not match"
+        }
+
+        const hasError = Object.values(newError).some(
+            (errorMessage) => errorMessage !== ""
+        );
+
+        if (hasError){
+            setError(newError);
+            return;
+        }
+        setError(newError);
+
+        console.log("Form is valid")
     }
 
     return (

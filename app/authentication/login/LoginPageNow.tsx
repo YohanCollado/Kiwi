@@ -28,28 +28,26 @@ export default function LoginPage() {
                         className="w-100 mx-auto"
                         required
                         ></InputField>
+
+                    <label className="text-white text-3xl">Password</label>
+                    <InputField
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-100 mx-auto"
+                        required
+                    ></InputField>
+
+                    <button className={`
+                        mt-6 px-2 py-2 rounded-md bg-brand
+                        text-white border-2 border-green-500
+                        hover:border-green-500 active:scale-95 
+                        transition-all duration-150 active:bg-green-600
+                        `}>
+                        Log In  
+                    </button>
                 </form>
-
-            <form className="flex flex-col items-center gap-1 mt-10">
-                <label className="text-white text-3xl">Password</label>
-                <InputField
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-100 mx-auto"
-                    required
-                ></InputField>
-            </form>
-
-            <button className={`
-                 mt-6 px-2 py-2 rounded-md bg-brand
-                text-white border-2 border-green-500
-                hover:border-green-500 active:scale-95 
-                transition-all duration-150 active:bg-green-600
-                `}>
-                Log In  
-            </button>
         </div>
     );
 } 
