@@ -58,12 +58,21 @@ export default function RegisterPage() {
             setError(newError);
             return;
         }
-        setError(newError);
+        
+        try {
+            const res = await fetch('api/authentication/register',{
+                method: 'POST',
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password})
+            });
 
-        if(!hasError){
-            console.log("Form is valid")
-            router.push("/dashboard")
-        }   
+            const data = await res.json();
+
+            if (!res.ok){
+                setError(prev => ({...prev, email: data.error || 'Something went wrong'}));
+                return;
+            }
+        }
     }
 
     return (
